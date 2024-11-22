@@ -40,9 +40,13 @@ fbmf_fbdv_dict = {
     "oneplus": ["OnePlus_9_Pro", "OnePlus_9", "OnePlus_8T", "OnePlus_8_Pro", "OnePlus_8", "OnePlus_7T_Pro", "OnePlus_7T", "OnePlus_7_Pro", "OnePlus_7", "OnePlus_6T", "OnePlus_6", "OnePlus_5T", "OnePlus_5", "OnePlus_3T", "OnePlus_3"]
 }
 
-for _ in range(10):  
+# Function to generate user agent
+def generate_user_agent():
+    density_values = ["2.0", "2.5", "3.0"]  # Add your actual density values
+    width_values = ["700", "720", "1080", "1200", "1440", "1600"]
+    height_values = ["1400", "1440", "1499"]
+
     fbcr = random.choice(fbcr_values)
-    
     fbmf = random.choice(list(fbmf_fbdv_dict.keys()))
     fbdv = random.choice(fbmf_fbdv_dict[fbmf])
     
@@ -52,5 +56,6 @@ for _ in range(10):
     
     color = random.choice(['\033[91m','\033[92m','\033[93m','\033[94m','\033[95m','\033[96m','\033[97m'])
 
-    user_agent = f"[FBAN/FB4A;FBAV/"+str(random.randint(199,399))+".0.0."+str(random.randint(1,9))+"."+str(random.randint(99,199))+";FBBV/"+str(random.randint(111111111,999999999))+";FBDM/{density="+str(random.randint(2,3))+"."+str(random.randint(0,5))+",width="+str(random.choice("700","720","1080","1200","1440","1600"))+",height="+str(random.randint(1400,1499))+"};FBLC/en_US;FBRV/"+str(random.randint(199,399))+".0.0."+str(random.randint(1,9))+"."+str(random.randint(99,199))+";FBCR/{fbcr};FBMF/{fbmf};FBBD/{fbmf};FBPN/com.facebook.katana;FBDV/{fbdv};FBSV/"+str(random.randint(9,12))+";FBOP/1;FBCA/arm64-v8a:]"
-    print(color+'\n'+user_agent)
+    user_agent = f"[FBAN/FB4A;FBAV/{random.randint(199,399)}.0.0.{random.randint(1,9)}.{random.randint(99,199)};FBBV/{random.randint(111111111,999999999)};FBDM/{density}={random.randint(2,3)}.{random.randint(0,5)},width={random.choice(width_values)},height={random.randint(1400,1499)}];FBLC/en_US;FBRV/{random.randint(199,399)}.0.0.{random.randint(1,9)}.{random.randint(99,199)};FBCR/{fbcr};FBMF/{fbmf};FBBD/{fbmf};FBPN/com.facebook.katana;FBDV/{fbdv};FBSV/{random.randint(9,12)};FBOP/1;FBCA/arm64-v8a:]"
+    
+    return user_agent
